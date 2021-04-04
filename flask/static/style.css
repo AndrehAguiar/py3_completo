@@ -1,0 +1,10 @@
+footer{
+  text-align: center;
+}
+.post{
+  background-color: ghostwhite;
+  padding: 15px;
+  width: 80vw;
+  margin: 0 auto 10px;
+  box-shadow: 1px 3px 5px black;
+}
