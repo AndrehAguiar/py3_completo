@@ -1,5 +1,4 @@
 from Utils.Conn import Conn
-from flask import url_for, redirect
 
 class TestProduct(object):
     """docstring for TestProduct."""
@@ -8,7 +7,6 @@ class TestProduct(object):
         super(TestProduct, self).__init__()
 
         self.__conn = None
-
         self.name = ["Hamburguer de Frango","Hamburguer de Picanha","Hamburguer Vegano","Pizza Calabresa","Pizza de Frango","Batata Frita","Refrigerante"]
 
         self.price = [12.90, 15.90, 12.90, 19.90, 17.90, 9.90, 4.90]
@@ -35,6 +33,4 @@ class TestProduct(object):
             values=f"'{self.name[i]}','{self.description[i]}','{str(self.price[i])}','{self.image[i]}'"
 
             self.__conn = Conn()
-            response = self.__conn._insertItem(fields, values, table="product")
-
-        return redirect(url_for('index'))
+            self.__conn._insertItem(fields, values, table="product")

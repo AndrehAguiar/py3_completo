@@ -10,8 +10,8 @@ class Conn(object):
 
     def _createTable(self, *args, **kwargs):
         table = kwargs["table"]
-        fields = ""
 
+        fields = ""
         for i, field in enumerate(args):
             field+= ", " if i is not len(args)-1 else ""
             fields+=field
@@ -28,6 +28,17 @@ class Conn(object):
         try:
             self.__cur.execute(f"SELECT * FROM {table}")
             response = self.__cur.fetchall()
+            self.__conn.close()
+            return True, response
+        except Exception as e:
+            print(e)
+            return False, None
+
+    def _selectEach(self, *args, **kwargs):
+        table = kwargs["table"]
+        try:
+            self.__cur.execute(f"SELECT * FROM {table} WHERE {args[0]} = '{args[1]}'")
+            response = self.__cur.fetchone()
             self.__conn.close()
             return True, response
         except Exception as e:

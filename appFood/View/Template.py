@@ -1,9 +1,21 @@
 class Template(object):
 
-    def __init__(self, page, content):
+    def __init__(self):
         super(Template, self).__init__()
+        self.__page = ""
+        self.__title = f"Time2eat | "
+        self.__content = ""
+        self.__client = ""
+        self.template = ""
+
+    def _setPage(self, page):
         self.__page = page
-        self.__title = f"Time2eat | {page}"
+        self.__title += f"{page}"
+
+    def _setClient(self, client):
+        self.__client = client
+
+    def _setContent(self, content):
         self.__content = content
         self.template = self.__getTemplate()
 
@@ -17,13 +29,21 @@ class Template(object):
         return head
 
     def __getHeader(self):
-        header = """
-        <header>Time2eat<button type='button' onclick='window.location.href="/testData"'>Test</button></header>"""
+        name = "" if self.__client == "" else self.__client.get('name')
+        points = "" if self.__client == "" else self.__client.get('points')
+        header = f"""<header>
+        <div id='logo'>Time2eat</div>
+        <span id='sp-client'>{name} | {points}pts.</span>
+        <div id='basket' onclick='showBasket()'>
+        <div id='bar'></div><div id='bar'></div><div id='bar'></div>
+        </div>
+        </header>"""
         return header
 
     def __getSection(self):
         section = f"""
         <section class='container'>
+            <div id='dv-basket'><div id='basket-items'>Nenhum item adicionado!</div><button type='submit' id='btn-chkout' disabled >CHECKOUT</button></div>
             {self.__content}
         </section>
         """
@@ -44,5 +64,6 @@ class Template(object):
             {self.__getSection()}
             {self.__getFooter()}
             </body>
+            <script src='../static/script.js'></script>
         </html>"""
         return template

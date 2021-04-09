@@ -8,6 +8,14 @@ body{
 }
 header{
   margin-bottom: auto;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+h1,
+h2,
+h3{
+  background-color: #f5a442;
 }
 h1,
 h2,
@@ -15,10 +23,13 @@ h3,
 header,
 footer{
   font-family: 'RocknRoll One', sans-serif;
-  background-color: #f5bf42;
-  font-family: 'RocknRoll One', sans-serif;
   text-transform: uppercase;
   padding: 15px;
+}
+header,
+footer{
+  background-color: #eb4034;
+  align-items: center;
 }
 .loader {
   margin: 35vh auto;
@@ -33,17 +44,89 @@ footer{
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
+#logo{
+  font-size: 20px;
+  font-weight: bold;
+}
+#sp-client{
+  margin-left: auto;
+  margin-right: 25px;
+}
+#basket{
+  border: 2px solid black;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 0 5px;
+  cursor: pointer;
+}
+#bar{
+  background-color: black;
+  height: 4px;
+  border-radius: 5px;
+}
 .container{
   display: inline-flex;
   flex-flow: wrap;
   justify-content: space-between;
 }
-#content{
-  width:30vw;
-  padding: 15px;
+#dv-basket{
+  display: none;
+  position: fixed;
+  right: 10px;
+  width: 350px;
+  padding: 25px;
+  background-color: white;
+  box-shadow: 1px 3px 3px darkslategrey;
+  text-align: center;
+  font-family: 'RocknRoll One', sans-serif;
 }
-#item-image img{
+#basket-items img{
+  width: 30%;
+}
+#basket-items div{
+  width: 100%;
+  padding: 5px 0;
+  text-align: left;
+  display: inline-flex;
+  border-bottom: 1px solid black;
+}
+#basket-items div div{
+  border: none;
+  text-align: left;
+  display: inline-flex;
+}
+#basket-items div span:nth-child(1){
+  width: 80%;
+  padding-left: 10px;
+  text-align: left;
+}
+#basket-items div span:nth-child(2){
+  width: 45%;
+  text-align: right;
+}
+#btn-chkout{
+  width: 100%;
+  padding: 15px;
+  background-color: #eb4034;
+  font-size: 15px;
+  font-family: 'RocknRoll One', sans-serif;
+}
+#content{
+  font-family: 'RocknRoll One', sans-serif;
+  width: 30vw;
+  min-width: 350px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.item-image img{
   width:30vw;
+  min-width: 100%;
 }
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
@@ -53,6 +136,82 @@ footer{
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+.item-qtd{
+  font-size: 40px;
+  padding: 15px;
+}
+button{
+  border: none;
+  cursor: pointer;
+}
+.item-sub,
+.item-sum{
+  font-family: 'RocknRoll One', sans-serif;
+  background: ghostwhite;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+}
+.item-add{
+  font-family: 'RocknRoll One', sans-serif;
+  background:  #eb4034;
+  width: 100%;
+  padding: 15px;
+  font-size: 25px;
+}
+.item-sub:focus,
+.item-sum:focus,
+.item-add:focus,
+#form button:focus,
+#btn-chkout:focus{
+  outline: none;
+}
+.item-sub:hover,
+.item-sum:hover,
+.item-add:hover,
+#form button:hover,
+#form input:hover,
+#form input:focus,
+#btn-chkout:hover{
+  box-shadow: 1px 2px 3px gray;
+  outline:none;
+}
+#options{
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+#options div{
+  margin-left: auto;
+  font-size: 35px;
+}
+#form{
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+#form label{
+  font-size: 20px;
+  font-family: 'RocknRoll One', sans-serif;
+  padding: 10px 0 0;
+  display: flex;
+  flex-direction: column;
+}
+#form input{
+  padding: 15px;
+  font-size: 25px;
+}
+#form button{
+  font-family: 'RocknRoll One', sans-serif;
+  padding: 15px;
+  background-color: #f5a442;
+  font-size: 22px;
+  border: none;
+  cursor: pointer;
 }
 footer{
   text-align: center;

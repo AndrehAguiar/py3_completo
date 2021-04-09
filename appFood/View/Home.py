@@ -4,10 +4,15 @@ from Controller.CtrlClient import CtrlClient
 
 class Home(Template):
     """docstring for Home."""
+
     def __init__(self):
-        super(Home, self).__init__("Home", self.__getContent())
+        """"Home", self.__getContent()"""
+        super(Home, self).__init__()
         self.__ctrlHome = CtrlHome()
-        self.__ctrlClient = CtrlClient()
+        self._setPage("Home")
+
+    def setContent(self):
+        self._setContent(self.__getContent())
 
     def __getContent(self):
         content = CtrlHome()

@@ -6,7 +6,6 @@ class CtrlProduct(object):
 
     def __init__(self):
         super(CtrlProduct, self).__init__()
-
         self.__conn = None
         self.__products = []
         self.__items = []
@@ -32,11 +31,12 @@ class CtrlProduct(object):
             self.__loadProducts()
 
     def getProducts(self):
+        if self.__items == None:
+            self.__loadProducts()
         for product in self.__items:
             self.__setProduct(product)
         return self.__products
 
     def __setProduct(self, product):
-        print("SET",product)
         item = Product(*product)
         self.__products.append(item)
