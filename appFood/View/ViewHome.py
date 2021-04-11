@@ -8,7 +8,6 @@ class Home(Template):
     def __init__(self):
         """"Home", self.__getContent()"""
         super(Home, self).__init__()
-        self.__ctrlHome = CtrlHome()
         self._setPage("Home")
 
     def setContent(self):

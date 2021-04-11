@@ -24,8 +24,8 @@ class Client(Template):
     def __setClient(self, email):
         _, self.client = self.__ctrlClient.getClient(email)
 
-    def setClient(self, email):
-        self.__setClient(email)
+    def setClient(self, *args):
+        self.__setClient(args)
 
     def __repr__(self):
         return self.template

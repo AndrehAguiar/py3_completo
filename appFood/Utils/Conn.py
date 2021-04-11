@@ -15,12 +15,14 @@ class Conn(object):
         for i, field in enumerate(args):
             field+= ", " if i is not len(args)-1 else ""
             fields+=field
+
+        print(fields)
         try:
             self.__cur.execute(f"CREATE TABLE {table} ({fields})")
             self.__conn.close()
             return True
         except Exception as e:
-            print(e)
+            print("CONN_CREATE", table, e)
             return False
 
     def _selectAll(self, *args, **kwargs):
@@ -31,7 +33,7 @@ class Conn(object):
             self.__conn.close()
             return True, response
         except Exception as e:
-            print(e)
+            print("CONN_SELECT-ALL", e)
             return False, None
 
     def _selectEach(self, *args, **kwargs):
@@ -42,7 +44,7 @@ class Conn(object):
             self.__conn.close()
             return True, response
         except Exception as e:
-            print(e)
+            print("CONN_SELECT-ONE",e)
             return False, None
 
     def _insertItem(self, *args, **kwargs):
@@ -53,5 +55,5 @@ class Conn(object):
             self.__conn.close()
             return True
         except Exception as e:
-            print(e)
+            print("CONN_INSERT-ONE",e)
             return False

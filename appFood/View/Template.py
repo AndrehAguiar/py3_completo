@@ -20,20 +20,19 @@ class Template(object):
         self.template = self.__getTemplate()
 
     def __getHead(self):
-        head = f"""
-        <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>{self.__title}</title>
-            <link rel='stylesheet' href='../static/style.css' />
+        head = f"""<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{self.__title}</title>
+        <link rel='stylesheet' href='../static/style.css' />
         </head>"""
         return head
 
     def __getHeader(self):
-        name = "" if self.__client == "" else self.__client.get('name')
-        points = "" if self.__client == "" else self.__client.get('points')
+        name = "" if self.__client == "" else f'{self.__client.get("name")} | '
+        points = "" if self.__client == "" else f'{self.__client.get("points")} pts.'
         header = f"""<header>
         <div id='logo'>Time2eat</div>
-        <span id='sp-client'>{name} | {points}pts.</span>
+        <span id='sp-client'>{name}{points}</span>
         <div id='basket' onclick='showBasket()'>
         <div id='bar'></div><div id='bar'></div><div id='bar'></div>
         </div>
@@ -41,23 +40,25 @@ class Template(object):
         return header
 
     def __getSection(self):
-        section = f"""
-        <section class='container'>
-            <div id='dv-basket'><div id='basket-items'>Nenhum item adicionado!</div><button type='submit' id='btn-chkout' disabled >CHECKOUT</button></div>
-            {self.__content}
-        </section>
-        """
+        section = f"""<section class='container'>
+        <div id='dv-basket'>
+        <div id='basket-items'>Nenhum item adicionado!</div>
+        <form action='/checkout' method='POST'>
+        <input type='hidden' value='' name='shop' id='shop'/>
+        <button type='submit' id='btn-chkout' disabled >CHECKOUT</button>
+        </form>
+        </div>
+        {self.__content}
+        <div id='loader' class='loader'></div>
+        </section>"""
         return section
 
     def __getFooter(self):
-        footer = """
-        <footer>Curso Python Avançado | Flask</footer>
-        """
+        footer = """<footer>Curso Python Avançado | Flask</footer>"""
         return footer
 
     def __getTemplate(self):
-        template = f"""
-        <html lang="pt-br" dir="ltr">
+        template = f"""<html lang="pt-br" dir="ltr">
             {self.__getHead()}
             <body>
             {self.__getHeader()}

@@ -1,4 +1,5 @@
 from .CtrlProduct import CtrlProduct
+from .CtrlClient import CtrlClient
 
 class CtrlHome(object):
     """docstring for CtrlHome."""
@@ -7,6 +8,7 @@ class CtrlHome(object):
         super(CtrlHome, self).__init__()
         self.content = ""
         self.__ctrlProduct = CtrlProduct()
+        self.__ctrlClient = CtrlClient()
         self.__setContent()
 
     def __setContent(self):
@@ -20,7 +22,7 @@ class CtrlHome(object):
             <button class='item-sub' type='button' id='sub-{i}' onclick='subItem({i})' disabled> - </button>
             <span class='item-qtd' id='item-{i}-qtd'>0</span>
             <button class='item-sum' type='button' id='sum-{i}' onclick='sumItem({i})'> + </button>
-            <div><small>R$ </small><span class='item-price' id='item-{i}-price'> {"{:.2f}".format(product.getPrice())}</span></div>
+            <div><small>R$ </small><span class='item-price' id='item-{i}-price'>{"{:.2f}".format(product.getPrice())}</span></div>
             </div>
             <button class='item-add' type='button' id='item-{i}-add' onclick='addItem({i})' disabled>ADD ITEM</button>
             </div>"""

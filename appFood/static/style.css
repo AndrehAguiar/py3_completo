@@ -7,7 +7,7 @@ body{
   margin:0;
 }
 header{
-  margin-bottom: auto;
+  /*margin-bottom: auto;*/
   display: inline-flex;
   justify-content: space-between;
 }
@@ -69,6 +69,7 @@ footer{
   border-radius: 5px;
 }
 .container{
+  margin-bottom: auto;
   display: inline-flex;
   flex-flow: wrap;
   justify-content: space-between;
@@ -123,6 +124,7 @@ footer{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin: 0 auto;
 }
 .item-image img{
   width:30vw;
@@ -164,7 +166,8 @@ button{
 .item-sum:focus,
 .item-add:focus,
 #form button:focus,
-#btn-chkout:focus{
+#btn-chkout:focus,
+#checkout form button:focus{
   outline: none;
 }
 .item-sub:hover,
@@ -173,7 +176,8 @@ button{
 #form button:hover,
 #form input:hover,
 #form input:focus,
-#btn-chkout:hover{
+#btn-chkout:hover,
+#checkout form button:hover{
   box-shadow: 1px 2px 3px gray;
   outline:none;
 }
@@ -212,6 +216,77 @@ button{
   font-size: 22px;
   border: none;
   cursor: pointer;
+}
+#checkout{
+  display: inline-flex;
+  flex-direction: column;
+  margin: 50px auto;
+}
+#checkout #content{
+  padding: 0;
+  width: 100%;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid darkgray;
+}
+#checkout img{
+  width: 10vw;
+  min-width: 150px;
+}
+#checkout div:nth-child(2){
+  padding: 15px;
+  width: 100%;
+  display: inline-flex;
+}
+#checkout #content div:nth-child(2) div:nth-child(1){
+  font-size: 25px;
+  padding: 15px;
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+}
+#checkout #content div:nth-child(2) div:nth-child(2){
+  display: inline-flex;
+  flex-direction: column;
+  font-size: 15px;
+  text-align: center;
+  width: 35%;
+}
+#checkout #content div:nth-child(2) div:nth-child(2) div{
+  font-size: 15px;
+}
+#checkout #content div:nth-child(2) div:nth-child(3){
+  width: 100%;
+  font-size: 25px;
+  padding: 15px;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+#checkout form{
+  margin-left: auto;
+}
+#checkout form button{
+  padding: 15px;
+  font-size: 25px;
+  font-family: 'RocknRoll One', sans-serif;
+  background:  #eb4034;
+}
+#total{
+  display: inline-flex;
+  justify-content: space-between;
+  padding: 15px 30px 15px 0;
+  font-size: 25px;
+  font-family: 'RocknRoll One', sans-serif;
+  align-items: center;
+  border-bottom: 1px solid darkgray;
+}
+#total span:first-of-type{
+  margin-right: auto;
 }
 footer{
   text-align: center;

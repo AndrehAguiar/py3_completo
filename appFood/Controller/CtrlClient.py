@@ -22,28 +22,34 @@ class CtrlClient(object):
             self.__setClients()
 
     def __setClients(self):
-        self.__conn = Conn()
         name = "name text"
         email = "email text"
         points = "points integer"
-        if not self.__conn._createTable(name, points, email, table="client"):
-            self.__loadClients()
+        try:
+            self.__conn = Conn()
+            if not self.__conn._createTable(name, points, email, table="client"):
+                self.__loadClients()
+        except Exception as e:
+            print(e)
 
     def getClients(self):
         if self.__items == None:
             self.__loadClients()
         for client in self.__items:
             self.__setClient(client)
-            print(self.__clients.__dict__)
         return self.__clients
 
-    def getClient(self, email):
-        self.__conn = Conn()
+    def getClient(self, *args):
+        field = args[0]
+        value = args[1]
         try:
-            flag, client = self.__conn._selectEach("email", email, table="client")
+            self.__conn = Conn()
+            flag, client = self.__conn._selectEach(f'{field}', f'{value}', table="client")
+            print(client)
             client = Client(*client)
             return flag, client
         except Exception as e:
+            print("CATCH GetClient", e)
             return flag
 
 

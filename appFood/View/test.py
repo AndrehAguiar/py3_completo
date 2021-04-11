@@ -4,13 +4,18 @@ from Utils.test.testClient import TestClient
 
 class TestData(Template):
     """docstring for TestData."""
-    __testProduct = TestProduct()
-    __testClient = TestClient()
 
     def __init__(self):
-        super(TestData, self).__init__("Test Data", self.__getContent())
+        super(TestData, self).__init__()
+        self.__testProduct = TestProduct()
+        self.__testClient = TestClient()
+        self.__setContent()
+        self._setPage("Test Data")
+
+    def __setContent(self):
         self.__testClient.testData()
         self.__testProduct.testData()
+        self._setContent(self.__getContent())
 
     def __getContent(self):
         content = """

@@ -1,12 +1,11 @@
 from Utils.Conn import Conn
+from Controller.CtrlProduct import CtrlProduct
 
-class TestProduct(object):
+class TestProduct(CtrlProduct):
     """docstring for TestProduct."""
 
     def __init__(self):
         super(TestProduct, self).__init__()
-
-        self.__conn = None
         self.name = ["Hamburguer de Frango","Hamburguer de Picanha","Hamburguer Vegano","Pizza Calabresa","Pizza de Frango","Batata Frita","Refrigerante"]
 
         self.price = [12.90, 15.90, 12.90, 19.90, 17.90, 9.90, 4.90]
@@ -30,7 +29,10 @@ class TestProduct(object):
     def testData(self):
         fields = "name,description,price,image"
         for i, _ in enumerate(self.name):
-            values=f"'{self.name[i]}','{self.description[i]}','{str(self.price[i])}','{self.image[i]}'"
 
-            self.__conn = Conn()
-            self.__conn._insertItem(fields, values, table="product")
+            values=f"'{self.name[i]}','{self.description[i]}','{str(self.price[i])}','{self.image[i]}'"
+            try:
+                self.__conn = Conn()
+                self.__conn._insertItem(fields, values, table="product")
+            except Exception as e:
+                print("TEST_PRODUCT============>", e)
