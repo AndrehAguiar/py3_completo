@@ -19,8 +19,7 @@ class TestData(Template):
 
     def __getContent(self):
         content = """
-        <div id='loader' class='loader'></div>
-        <script>setTimeout(function(){window.location.href = './'; }, 3000);</script>"""
+        <script>setTimeout(function(){window.location.href = './'; }, 1000);</script>"""
         return f'{content}'
 
     def __repr__(self):

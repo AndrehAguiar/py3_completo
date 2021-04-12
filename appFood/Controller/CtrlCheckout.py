@@ -1,12 +1,14 @@
 import json
 from .CtrlProduct import CtrlProduct
 from .CtrlClient import CtrlClient
+from Model.Checkout import Checkout
 
 class CtrlCheckout(object):
     """docstring for CtrlCheckout."""
 
     def __init__(self, shop):
         super(CtrlCheckout, self).__init__()
+        self.checkout = None
         self.content = ""
         self.__shopItems = ""
         self.__products = []
@@ -19,8 +21,10 @@ class CtrlCheckout(object):
     def __setShop(self):
         dctItems = {}
         products = []
+        qtd = []
         shop = self.__shopItems
         for i, item in enumerate(shop['userBasket']):
+            qtd.append(int(self.__shopItems['userBasket'][str(i)]['qtd']))
             dctItems.setdefault(shop['userBasket'][str(i)]['item'], 0)
             _, product = self.__ctrlProduct.getProduct(shop['userBasket'][str(i)]['item'])
             dctItems[shop['userBasket'][str(i)]['item']]+=1
@@ -28,6 +32,7 @@ class CtrlCheckout(object):
 
         name = shop['userLogged']
         flag, client = self.__ctrlClient.getClient('name', name)
+        self.checkout = Checkout(client, self.__products, qtd)
         return client
 
     def __setContent(self):
@@ -47,8 +52,10 @@ class CtrlCheckout(object):
             </div>
             </div>"""
 
-        self.content +=f"""<div id='total'><span>Total da compra</span><small>R$ </small>{"{:.2f}".format(total)}</div>
-        <form action='checkout/success' method='POST'>
+        self.content +=f"""<div id='total'><span>Total da compra</span><small>R$ </small> {"{:.2f}".format(self.checkout.getTotal())}</div>
+        <div id='discount'><span>Desconto</span><small>- R$ </small> {"{:.2f}".format(self.checkout.getDiscount())}</div>
+        <div id='payable'><span>Total a pagar</span><small>R$ </small> {"{:.2f}".format(self.checkout.getPayable())}</div>
+        <form action='/confirm/check' method='POST'>
         <input type='hidden' value='{json.dumps(self.__shopItems)}' name='userShop' />
         <button type='submit'>Confirmar</button>
         </form>

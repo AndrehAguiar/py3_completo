@@ -2,18 +2,23 @@ from flask import Flask, render_template_string, request, redirect, url_for, mak
 from View.ViewHome import Home
 from View.ViewClient import Client
 from View.ViewCheckout import Checkout
+from View.ViewSale import Sale
 from View.test import TestData
 
 app = Flask(__name__)
+
+def getCookies():
+    email = request.cookies.get('userEmail')
+    name = request.cookies.get('userName')
+    points = request.cookies.get('userPoints')
+
+    return dict(zip(['name','points','email'],[name, points, email]))
 
 @app.route("/")
 def index():
     home = Home()
     if request.cookies.get('userEmail') is not None:
-        email = request.cookies.get('userEmail')
-        name = request.cookies.get('userName')
-        points = request.cookies.get('userPoints')
-        home._setClient(dict(zip(['name','points','email'],[name, points, email])))
+        home._setClient(getCookies())
 
     home.setContent()
     return render_template_string(f'{home}')
@@ -37,36 +42,49 @@ def client():
         return resp
     else:
         if request.cookies.get('userName') != None:
-            email = request.cookies.get('userEmail')
-            name = request.cookies.get('userName')
-            points = request.cookies.get('userPoints')
-            client._setClient(dict(zip(['name','points','email'],[name, points, email])))
+            client._setClient(getCookies())
+
         client.setContent()
         return render_template_string(f'{client}')
 
-@app.route("/confirm")
-def confirm():
-    if request.method == "POST":
-        return url_for('confirm')
-    return render_template_string("SUCCESS!!")
+@app.route("/confirm/<status>", methods=['GET','POST'])
+def confirm(status):
+
+    sale = Sale()
+    if request.cookies.get('userEmail') is not None:
+        sale._setClient(getCookies())
+
+    if request.method == "POST" and status == "check":
+        userSale = request.form["userShop"]
+
+        if sale.setSale(userSale):
+            return redirect(url_for('confirm', status='success'))
+        else:
+            return redirect(url_for('confirm', status='error'))
+
+    if status == 'success':
+        sale.setShop()
+
+    sale.setContent(status)
+    return render_template_string(f'{sale}')
+
+    return redirect(url_for('index'))
 
 @app.route("/checkout", methods = ['GET','POST'])
 def checkOut():
-    checkout = Checkout()
-
-    if request.cookies.get('userEmail') is not None:
-        email = request.cookies.get('userEmail')
-        name = request.cookies.get('userName')
-        points = request.cookies.get('userPoints')
-        checkout._setClient(dict(zip(['name','points','email'],[name, points, email])))
-
     if request.method == "POST":
-        shop = request.form['shop']
-        print("##### APP SHOP ==================> ", shop)
-        checkout.setShop(shop)
+        checkout = Checkout()
 
-    checkout.setContent()
-    return render_template_string(f'{checkout}')
+        if request.cookies.get('userEmail') is not None:
+            checkout._setClient(getCookies())
+
+        shop = request.form['shop']
+        checkout.setShop(shop)
+        checkout.setContent()
+        return render_template_string(f'{checkout}')
+
+    return redirect(url_for('index'))
+
 
 @app.route("/testData")
 def test():

@@ -21,11 +21,11 @@ class Client(Template):
         """
         return f'{content}'
 
-    def __setClient(self, email):
-        _, self.client = self.__ctrlClient.getClient(email)
+    def __setClient(self, *args):
+        _, self.client = self.__ctrlClient.getClient(*args)
 
     def setClient(self, *args):
-        self.__setClient(args)
+        self.__setClient(*args)
 
     def __repr__(self):
         return self.template

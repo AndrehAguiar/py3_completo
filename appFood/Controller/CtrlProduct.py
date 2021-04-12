@@ -12,8 +12,8 @@ class CtrlProduct(object):
         self.__loadProducts()
 
     def __loadProducts(self):
-        self.__conn = Conn()
         try:
+            self.__conn = Conn()
             flag, products = self.__conn._selectAll(table="product")
             if not flag:
                 self.__setProducts()

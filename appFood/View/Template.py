@@ -40,7 +40,11 @@ class Template(object):
         return header
 
     def __getSection(self):
-        section = f"""<section class='container'>
+        section = f"""
+        <div id='dvLoader'>
+        <div id='loader' class='loader'></div>
+        </div>
+        <section class='container'>
         <div id='dv-basket'>
         <div id='basket-items'>Nenhum item adicionado!</div>
         <form action='/checkout' method='POST'>
@@ -49,7 +53,6 @@ class Template(object):
         </form>
         </div>
         {self.__content}
-        <div id='loader' class='loader'></div>
         </section>"""
         return section
 

@@ -11,7 +11,9 @@ header{
   display: inline-flex;
   justify-content: space-between;
 }
-
+h1{
+  text-align: center;
+}
 h1,
 h2,
 h3{
@@ -30,6 +32,12 @@ header,
 footer{
   background-color: #eb4034;
   align-items: center;
+}
+#dvLoader{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: white;
 }
 .loader {
   margin: 35vh auto;
@@ -146,6 +154,7 @@ footer{
 button{
   border: none;
   cursor: pointer;
+  text-transform: uppercase;
 }
 .item-sub,
 .item-sum{
@@ -277,16 +286,70 @@ button{
   background:  #eb4034;
 }
 #total{
+font-size: 15px;
+}
+#total,
+#resume-total,
+#discount,
+#resume-discount,
+#payable,
+#resume-payable{
   display: inline-flex;
   justify-content: space-between;
   padding: 15px 30px 15px 0;
-  font-size: 25px;
   font-family: 'RocknRoll One', sans-serif;
   align-items: center;
-  border-bottom: 1px solid darkgray;
 }
-#total span:first-of-type{
+#payable,
+#resume-payable{
+    border-bottom: 1px solid darkgray;
+    font-size: 25px;
+}
+#total span:first-of-type,
+#resume-total span:first-of-type,
+#discount span:first-of-type,
+#resume-discount span:first-of-type,
+#payable span:first-of-type,
+#resume-payable span:first-of-type{
   margin-right: auto;
+  width: 70%;
+  text-align: right;
+}
+.resume{
+  width: 80% !important;
+}
+#resume-user{
+  padding: 0 25px;
+}
+#resume-item-image{
+  width: 20%;
+}
+#resume-item-image img{
+  width: 60%;
+}
+#resume-items{
+  display: inline-flex;
+  width: 100%;
+  padding: 15px 0;
+  border-bottom: 1px solid darkgray;
+  align-items: center;
+}
+#resume-item-n{
+  width: 10%;
+}
+#resume-item-name{
+  width: 40%;
+}
+#resume-item-qtd{
+  width: 10%;
+  text-align: center;
+}
+#resume-item-price{
+  text-align: right;
+  width: 20%;
+}
+.resume div:last-child{
+
 }
 footer{
   text-align: center;

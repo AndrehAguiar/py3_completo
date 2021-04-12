@@ -36,6 +36,17 @@ class Conn(object):
             print("CONN_SELECT-ALL", e)
             return False, None
 
+    def _selectAllWhere(self, *args, **kwargs):
+        table = kwargs["table"]
+        try:
+            self.__cur.execute(f"SELECT * FROM {table} WHERE {args[0]} = '{args[1]}'")
+            response = self.__cur.fetchall()
+            self.__conn.close()
+            return True, response
+        except Exception as e:
+            print("CONN_SELECT-ALL", e)
+            return False, None
+
     def _selectEach(self, *args, **kwargs):
         table = kwargs["table"]
         try:

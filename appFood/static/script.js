@@ -6,7 +6,7 @@ var basketLoaded = null
 
 function chkBtnCheckout(){
   var btn = document.getElementById('btn-chkout')
-  if(basketLoaded["userBasket"] !== undefined & window.location.href !== "/checkout"){
+  if(basketLoaded["userBasket"] !== undefined & window.location.pathname !== "/checkout"){
     btn.disabled = false;
   }else{
     btn.disabled = true;
@@ -31,7 +31,6 @@ function loadBasket(basketLoaded){
     var shop = {};
     console.log(Object.keys(basketLoaded["userBasket"]).length);
     for(var i = 0; i < Object.keys(basketLoaded["userBasket"]).length; i++){
-      console.log("FOR========>", basketLoaded["userBasket"][i]);
       var item = basketLoaded["userBasket"][i]["item"];
       var qtd = basketLoaded["userBasket"][i]["qtd"];
       var price = basketLoaded["userBasket"][i]["price"];
@@ -86,6 +85,7 @@ function addItem(id){
     window.location.href = "/client";
   }else{
     if(basketLoaded['userBasket'] === undefined){
+      loadBasket(basketLoaded);
       basketLoaded['userBasket'] = {};
     }
 
@@ -123,9 +123,8 @@ window.addEventListener('load', function(e) {
     userLogged = user.split(" | ")[0];
     logged = true;
   }
-
   basketLoaded = getBasket();
-  if (basketLoaded === null) {
+  if (basketLoaded === null || basketLoaded["userLogged"] !== userLogged) {
     setBasket({userLogged});
     basketLoaded = getBasket();
     console.log(basketLoaded)
@@ -137,4 +136,5 @@ window.addEventListener('load', function(e) {
       userBasket = basketLoaded;
   }
   document.getElementById("loader").remove();
+  document.getElementById("dvLoader").remove();
 });

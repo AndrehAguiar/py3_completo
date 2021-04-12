@@ -12,8 +12,8 @@ class CtrlClient(object):
         self.__loadClients()
 
     def __loadClients(self):
-        self.__conn = Conn()
         try:
+            self.__conn = Conn()
             flag, clients = self.__conn._selectAll(table="client")
             if not flag:
                 self.__setClients()
@@ -45,7 +45,6 @@ class CtrlClient(object):
         try:
             self.__conn = Conn()
             flag, client = self.__conn._selectEach(f'{field}', f'{value}', table="client")
-            print(client)
             client = Client(*client)
             return flag, client
         except Exception as e:

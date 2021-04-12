@@ -1,8 +1,9 @@
-class Checkout(object):
-    """docstring for Checkout."""
+class Sale(object):
+    """docstring for Sale."""
 
     def __init__(self, *args):
-        super(Checkout, self).__init__()
+        super(Sale, self).__init__()
+        print(args)
         self.__client = args[0]
         self.__products = args[1]
         self.__qtd = args[2]
