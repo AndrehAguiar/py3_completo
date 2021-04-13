@@ -44,7 +44,6 @@ class Sale(Template):
                 <div id='resume-item-qtd'>Quantity</div>
                 <div id='resume-item-price'>Value</div>
             </div>"""
-            total = 0
             for i, item in enumerate(self.__products):
                 content+=f"""
                 <div id='resume-items'>

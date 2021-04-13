@@ -3,7 +3,7 @@ from View.ViewHome import Home
 from View.ViewClient import Client
 from View.ViewCheckout import Checkout
 from View.ViewSale import Sale
-from View.test import TestData
+#from View.test import TestData
 
 app = Flask(__name__)
 
@@ -85,11 +85,12 @@ def checkOut():
 
     return redirect(url_for('index'))
 
-
+"""
 @app.route("/testData")
 def test():
     test = TestData()
     return render_template_string(f'{test}')
+"""
 
 if __name__ == '__main__':
     app.run(debug=True)

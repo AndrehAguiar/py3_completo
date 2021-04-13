@@ -1,8 +1,17 @@
+import logging
+
 import json
 from Model.Sale import Sale
 from Utils.Conn import Conn
 from .CtrlProduct import CtrlProduct
 from .CtrlClient import CtrlClient
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(name)s:%(message)s')
+file_handler = logging.FileHandler('./Utils/logs/controlSale.log')
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
 
 class CtrlSale(object):
     """docstring for CtrlSale."""
@@ -71,6 +80,7 @@ class CtrlSale(object):
             print("SET SALES", e)
 
     def __insertSale(self, *args):
+        logger.debug(f'Return===>SALE "{args}"')
         try:
             self.__conn = Conn()
             self.__conn._insertItem(args[0], args[1], table="sale")

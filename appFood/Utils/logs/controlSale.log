@@ -1,0 +1,5 @@
+2021-04-13 11:42:39,738:DEBUG:Controller.CtrlSale:Return===>Client "('id,client,product,quantity,value', "'6','Robert Gray','Hamburguer de Picanha','2','15.90'")"
+2021-04-13 11:42:39,830:DEBUG:Controller.CtrlSale:Return===>Client "('id,client,product,quantity,value', "'6','Robert Gray','Hamburguer de Picanha','2','15.90'")"
+2021-04-13 11:42:39,911:DEBUG:Controller.CtrlSale:Return===>Client "('id,client,product,quantity,value', "'6','Robert Gray','Hamburguer de Frango','2','12.90'")"
+2021-04-13 11:42:39,997:DEBUG:Controller.CtrlSale:Return===>Client "('id,client,product,quantity,value', "'6','Robert Gray','Hamburguer Vegano','2','12.90'")"
+2021-04-13 11:42:40,084:DEBUG:Controller.CtrlSale:Return===>Client "('id,client,product,quantity,value', "'6','Robert Gray','Pizza Calabresa','3','19.90'")"
