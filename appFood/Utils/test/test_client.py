@@ -4,7 +4,7 @@ from Conn import Conn
 class TestClient(unittest.TestCase):
     """docstring for TestClient."""
 
-    def test_data(self):
+    def test_client(self):
 
         name = ["Alex Green","James Brown","Robert Gray","Jessy Blue"]
 
@@ -23,5 +23,5 @@ class TestClient(unittest.TestCase):
             except Exception as e:
                 print("TEST_CLIENT============>", e)
 
-    if __name__ == '__main__':
-        unittest.main()
+if __name__ == '__main__':
+    unittest.main()

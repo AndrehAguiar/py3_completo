@@ -1,10 +1,10 @@
 import unittest
 from Conn import Conn
 
-class TestClient(unittest.TestCase):
+class TestSales(unittest.TestCase):
     """docstring for TestClient."""
 
-    def test_data(self):
+    def test_sales(self):
 
         id = [7,8,9,10]
         client = ["Alex Green","James Brown","Robert Gray","Jessy Blue"]
@@ -15,13 +15,14 @@ class TestClient(unittest.TestCase):
         value = [90.5,75.5,50.9,101.3]
 
         fields = "id,client,product,quantity,value"
-        for i, _ in enumerate(name):
-            values=f"'{id[i]}','{client[i]}','{products[i]}','{qtd[i]}','{value[i]}'"
-            try:
-                conn = Conn()
-                self.assertEqual(conn._insertItem(fields, values, table="client"), True)
-            except Exception as e:
-                print("TEST_CLIENT============>", e)
+        for i, _ in enumerate(id):
+            for j, product in enumerate(products[i]):
+                values=f"'{id[i]}','{client[i]}','{product}','{qtd[i]}','{value[i]}'"
+                try:
+                    conn = Conn()
+                    self.assertEqual(conn._insertItem(fields, values, table="sale"), True)
+                except Exception as e:
+                    print("TEST_CLIENT============>", e)
 
-    if __name__ == '__main__':
-        unittest.main()
+if __name__ == '__main__':
+    unittest.main()

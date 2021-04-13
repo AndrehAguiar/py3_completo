@@ -35,5 +35,5 @@ class TestProduct(unittest.TestCase):
             except Exception as e:
                 print("TEST_PRODUCT============>", e)
 
-    if __name__ == '__main__':
-        unittest.main()
+if __name__ == '__main__':
+    unittest.main()
