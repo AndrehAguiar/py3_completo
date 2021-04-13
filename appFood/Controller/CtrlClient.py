@@ -1,5 +1,14 @@
+import logging
+
 from Model.Client import Client
 from Utils.Conn import Conn
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(name)s:%(message)s')
+file_handler = logging.FileHandler('./Utils/logs/controlClient.log')
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
 
 class CtrlClient(object):
     """docstring for CtrlClient."""
@@ -7,6 +16,7 @@ class CtrlClient(object):
     def __init__(self):
         super(CtrlClient, self).__init__()
         self.__conn = None
+        self.__client = None
         self.__clients = []
         self.__items = []
         self.__loadClients()
@@ -40,16 +50,17 @@ class CtrlClient(object):
         return self.__clients
 
     def getClient(self, *args):
-        field = args[0]
-        value = args[1]
+        logger.debug(f'Arguments "{args}"')
         try:
             self.__conn = Conn()
-            flag, client = self.__conn._selectEach(f'{field}', f'{value}', table="client")
-            client = Client(*client)
-            return flag, client
+            flag, client = self.__conn._selectEach(f'{args[0]}', f'{args[1]}', table="client")
+            logger.debug(f'Return===>Client "{client}" / Flag "{flag}"')
+            self.__client = Client(*client)
+            logger.debug(f'Client===>ObjClient "{self.__client}"')
+            return flag, self.__client
         except Exception as e:
-            print("CATCH GetClient", e)
-            return flag
+            print("Exception GetClient", e)
+            return flag, None
 
 
     def __setClient(self, client):

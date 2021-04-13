@@ -245,8 +245,7 @@ button{
   min-width: 150px;
 }
 #checkout div:nth-child(2){
-  padding: 15px;
-  width: 100%;
+  padding: 15px 30px 15px 0;
   display: inline-flex;
 }
 #checkout #content div:nth-child(2) div:nth-child(1){
@@ -270,7 +269,7 @@ button{
 #checkout #content div:nth-child(2) div:nth-child(3){
   width: 100%;
   font-size: 25px;
-  padding: 15px;
+  padding: 15px 0;
   text-align: right;
   display: flex;
   justify-content: flex-end;

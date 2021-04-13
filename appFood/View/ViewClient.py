@@ -1,5 +1,13 @@
+import logging
 from .Template import Template
 from Controller.CtrlClient import CtrlClient
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(name)s:%(message)s')
+file_handler = logging.FileHandler('./Utils/logs/viewClient.log')
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
 
 class Client(Template):
     """docstring for Client."""
@@ -22,7 +30,10 @@ class Client(Template):
         return f'{content}'
 
     def __setClient(self, *args):
+        logger.debug(f'Arguments "{args}"')
         _, self.client = self.__ctrlClient.getClient(*args)
+        logger.debug(f'Client==>"{self.client}"')
+
 
     def setClient(self, *args):
         self.__setClient(*args)

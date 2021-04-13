@@ -1,3 +1,12 @@
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s:%(levelname)s:%(name)s:%(message)s')
+file_handler = logging.FileHandler('./Utils/logs/sale.log')
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
+
 class Sale(object):
     """docstring for Sale."""
 
@@ -10,6 +19,8 @@ class Sale(object):
         self.__total = self.__setTotal()
         self.__discount = self.__setDiscount()
         self.__payable = self.__total - self.__discount
+        logger.info(f'Client "{self.__client.getEmail()}"\nProducts "{[p.getName() for p in self.__products]}"\n\
+        Quantity "{self.__qtd}"\nTotal "{self.__total}"\nDiscount "{self.__discount}"\nPayable "{self.__payable}"')
 
     def getTotal(self):
         return self.__total
